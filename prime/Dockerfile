@@ -1,5 +1,7 @@
-FROM python:3.8
-WORKDIR /app
-COPY prime_checker.py .
+FROM openjdk:8-jdk-alpine AS build
+COPY PrimeChecker.java .
+RUN javac PrimeChecker.java
 
-ENTRYPOINT ["python", "prime_checker.py"]
+FROM openjdk:8-jre-alpine
+COPY --from=build PrimeChecker.class PrimeChecker.class
+ENTRYPOINT ["java", "PrimeChecker"]
