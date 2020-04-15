@@ -8,22 +8,16 @@ import java.io.InputStreamReader;
 public class PrimeChecker {
     public static void main(final String[] args) throws Exception {
         final String fileName = args[0];
-        final long t1 = System.currentTimeMillis();
         read(fileName);
-        final long t2 = System.currentTimeMillis();
-        System.out.println("Total time: " + (t2 - t1));
     }
 
     public static void read(final String inputFile) throws IOException {
         try (FileInputStream inputStream = new FileInputStream(inputFile)) {
             final BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
             String line;
-            int count = 0;
             while ((line = in.readLine()) != null) {
                 System.out.println(isPrime(parseInt(line)));
-                ++count;
             }
-            System.out.println("Processed " + count);
         }
     }
 
