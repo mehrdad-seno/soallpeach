@@ -1,9 +1,11 @@
 import static java.lang.Integer.parseInt;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 public class PrimeChecker {
     public static void main(final String[] args) throws Exception {
@@ -12,11 +14,13 @@ public class PrimeChecker {
     }
 
     public static void read(final String inputFile) throws IOException {
+        BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
         try (FileInputStream inputStream = new FileInputStream(inputFile)) {
             final BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
             String line;
             while ((line = in.readLine()) != null) {
-                System.out.println(isPrime(parseInt(line)));
+                int isPrime = isPrime(parseInt(line));
+                out.write(isPrime + "\n");
             }
         }
     }
@@ -31,7 +35,7 @@ public class PrimeChecker {
             return 0;
 
         final int sqrt = (int) Math.sqrt(num);
-        for (int i = 5; i <= sqrt; i+=6) {
+        for (int i = 5; i <= sqrt; i += 6) {
             if (num % i == 0 || num % (i + 2) == 0)
                 return 0;
         }
