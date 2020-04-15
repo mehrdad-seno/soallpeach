@@ -14,13 +14,14 @@ public class PrimeChecker {
     }
 
     public static void read(final String inputFile) throws IOException {
+        String lineEnding = System.getProperty("line.separator");
         BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
         try (FileInputStream inputStream = new FileInputStream(inputFile)) {
             final BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
             String line;
             while ((line = in.readLine()) != null) {
                 int isPrime = isPrime(parseInt(line));
-                out.write(isPrime + "\n");
+                out.write(isPrime + lineEnding);
             }
         }
     }
